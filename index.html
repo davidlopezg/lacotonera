@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Cotonera - Tienda de la Tía de María</title>
+    <title>La Cotonera - Concept Store de Hogar y Complementos | Mataró</title>
+    <meta name="description" content="Concept store en Mataró especializada en textiles naturales para el hogar, bolsos artesanales y complementos con alma. Slow living y comercio de proximidad.">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --color-primary: #584A3E;
@@ -437,17 +440,74 @@
             color: var(--color-primary);
         }
 
-        .product-price .original {
-            text-decoration: line-through;
-            opacity: 0.5;
+        /* ===== CATEGORIES ===== */
+        .categories {
+            padding: 6rem 0;
+            background: linear-gradient(180deg, var(--color-background) 0%, var(--color-secondary) 100%);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            position: relative;
+            height: 300px;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .category-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s var(--transition-smooth);
+        }
+
+        .category-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .category-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(88, 74, 62, 0.85) 0%, rgba(88, 74, 62, 0.2) 50%, transparent 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            transition: background 0.3s ease;
+        }
+
+        .category-card:hover .category-overlay {
+            background: linear-gradient(to top, rgba(88, 74, 62, 0.9) 0%, rgba(88, 74, 62, 0.4) 70%, transparent 100%);
+        }
+
+        .category-content h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--color-white);
+            margin-bottom: 0.25rem;
+        }
+
+        .category-content p {
+            color: rgba(255, 255, 255, 0.8);
             font-size: 0.9rem;
-            margin-left: 0.5rem;
         }
 
         /* ===== ABOUT SECTION ===== */
         .about {
             padding: 6rem 0;
-            background: linear-gradient(180deg, var(--color-background) 0%, var(--color-secondary) 100%);
+            background: var(--color-white);
         }
 
         .about-content {
@@ -509,7 +569,7 @@
             width: 48px;
             height: 48px;
             min-width: 48px;
-            background: var(--color-white);
+            background: var(--color-background);
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -538,7 +598,7 @@
         /* ===== MASONRY GALLERY ===== */
         .gallery {
             padding: 6rem 0;
-            background: var(--color-white);
+            background: var(--color-background);
         }
 
         .masonry {
@@ -597,19 +657,82 @@
             font-size: 0.9rem;
         }
 
-        /* ===== TESTIMONIALS ===== */
-        .testimonials {
+        /* ===== VALUES ===== */
+        .values {
             padding: 6rem 0;
             background: var(--color-primary);
             color: var(--color-white);
         }
 
-        .testimonials .section-title {
+        .values .section-title {
             color: var(--color-white);
         }
 
-        .testimonials .section-subtitle {
+        .values .section-subtitle {
             color: rgba(255, 255, 255, 0.7);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        .value-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .value-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1.5rem;
+            background: var(--color-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .value-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .value-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials {
+            padding: 6rem 0;
+            background: var(--color-secondary);
+        }
+
+        .testimonials .section-title {
+            color: var(--color-primary);
+        }
+
+        .testimonials .section-subtitle {
+            color: var(--color-primary);
+            opacity: 0.7;
         }
 
         .testimonials-grid {
@@ -619,17 +742,16 @@
         }
 
         .testimonial-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
+            background: var(--color-white);
             border-radius: 20px;
             padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow-soft);
             transition: all 0.3s var(--transition-smooth);
         }
 
         .testimonial-card:hover {
-            background: rgba(255, 255, 255, 0.12);
             transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
         }
 
         .testimonial-stars {
@@ -670,16 +792,69 @@
             font-family: var(--font-heading);
             font-size: 1.25rem;
             font-weight: 600;
+            color: var(--color-white);
         }
 
         .testimonial-author-info h5 {
             font-size: 1rem;
             font-weight: 500;
+            color: var(--color-primary);
         }
 
         .testimonial-author-info p {
             font-size: 0.85rem;
             opacity: 0.7;
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter {
+            padding: 4rem 0;
+            background: var(--color-white);
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .newsletter h3 {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .newsletter p {
+            font-size: 1rem;
+            opacity: 0.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem 1.25rem;
+            border: 1px solid rgba(88, 74, 62, 0.15);
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            background: var(--color-background);
+            color: var(--color-primary);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        .newsletter-form button {
+            white-space: nowrap;
         }
 
         /* ===== CONTACT ===== */
@@ -949,7 +1124,15 @@
                 justify-content: center;
             }
 
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1021,12 +1204,24 @@
                 text-align: center;
             }
 
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-card {
+                height: 250px;
+            }
+
             .masonry {
                 column-count: 1;
             }
 
             .form-row {
                 grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
             }
 
             .footer-content {
@@ -1120,6 +1315,7 @@
                 <ul class="nav-links">
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#productos">Productos</a></li>
+                    <li><a href="#categorias">Categorías</a></li>
                     <li><a href="#nosotros">Nosotros</a></li>
                     <li><a href="#galeria">Galería</a></li>
                     <li><a href="#contacto">Contacto</a></li>
@@ -1139,14 +1335,14 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <span class="hero-badge">✨ Artesanía Mediterránea</span>
-                    <h1 class="hero-title">Descubre la magia del <span>Slow Living</span> en cada producto</h1>
+                    <span class="hero-badge">🌿 Concept Store en Mataró</span>
+                    <h1 class="hero-title">Textiles con <span>alma</span> para tu hogar</h1>
                     <p class="hero-description">
-                        Productos artesanales cuidadosamente seleccionados para bring warmth y autenticidad a tu hogar. Cada pieza cuenta una historia de tradición y sostenibilidad.
+                        Descubre nuestra selección de productos artesanales con materiales nobles. Cada pieza cuenta una historia de tradición textil y comercio de proximidad desde el corazón de Mataró.
                     </p>
                     <div class="hero-buttons">
                         <a href="#productos" class="btn btn-primary">
-                            Ver Colección
+                            Explorar Colección
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M5 12h14M12 5l7 7-7 7"/>
                             </svg>
@@ -1160,7 +1356,7 @@
                         </div>
                         <div class="stat">
                             <div class="stat-number">2K</div>
-                            <div class="stat-label">Clientes felices</div>
+                            <div class="stat-label">Clientes satisfechos</div>
                         </div>
                         <div class="stat">
                             <div class="stat-number">15</div>
@@ -1169,7 +1365,7 @@
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=500&fit=crop" alt="Tienda artesanal con productos de algodón y textiles naturales">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=500&fit=crop" alt="Interior de La Cotonera con textiles y productos artesanales">
                 </div>
             </div>
         </div>
@@ -1179,7 +1375,7 @@
     <section class="featured" id="productos">
         <div class="container">
             <h2 class="section-title animate-on-scroll">Productos Destacados</h2>
-            <p class="section-subtitle animate-on-scroll">Selección especial de nuestras piezas más queridas</p>
+            <p class="section-subtitle animate-on-scroll">Piezas seleccionadas con cariño para tu hogar y tu día a día</p>
             <div class="products-grid">
                 <article class="product-card">
                     <div class="product-image">
@@ -1200,15 +1396,15 @@
                         </div>
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Textiles</span>
+                        <span class="product-category">Textil Hogar</span>
                         <h3 class="product-name">Cojines de Lino Lavado</h3>
                         <p class="product-price">€34.00</p>
                     </div>
                 </article>
                 <article class="product-card">
                     <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1594040226829-7f251ab46d80?w=400&h=320&fit=crop" alt="Canasta de mimbre natural">
-                        <span class="product-badge" style="background: var(--color-accent-blue);">Popular</span>
+                        <img src="https://images.unsplash.com/photo-1594040226829-7f251ab46d80?w=400&h=320&fit=crop" alt="Capazo de rafia natural">
+                        <span class="product-badge" style="background: var(--color-accent-blue);">Verano</span>
                         <div class="product-actions">
                             <button class="product-action-btn" aria-label="Ver producto">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1224,14 +1420,14 @@
                         </div>
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Almacenaje</span>
-                        <h3 class="product-name">Canasta de Mimbre Artesanal</h3>
+                        <span class="product-category">Complementos</span>
+                        <h3 class="product-name">Capazo de Rafia Artesanal</h3>
                         <p class="product-price">€48.00</p>
                     </div>
                 </article>
                 <article class="product-card">
                     <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1602028279917-4ac571b0ede7?w=400&h=320&fit=crop" alt="Neceser de algodón">
+                        <img src="https://images.unsplash.com/photo-1602028279917-4ac571b0ede7?w=400&h=320&fit=crop" alt="Neceser con estampado geométrico">
                         <span class="product-badge" style="background: var(--color-primary);">-20%</span>
                         <div class="product-actions">
                             <button class="product-action-btn" aria-label="Ver producto">
@@ -1248,9 +1444,9 @@
                         </div>
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Accesorios</span>
-                        <h3 class="product-name">Neceser de Algodón</h3>
-                        <p class="product-price">€22.00 <span class="original">€28.00</span></p>
+                        <span class="product-category">Moda</span>
+                        <h3 class="product-name">Neceser Estampado Geométrico</h3>
+                        <p class="product-price">€22.00</p>
                     </div>
                 </article>
                 <article class="product-card">
@@ -1271,9 +1467,55 @@
                         </div>
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Decoración</span>
+                        <span class="product-category">Aromas</span>
                         <h3 class="product-name">Vela Aromática Lavanda</h3>
                         <p class="product-price">€18.00</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories" id="categorias">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Nuestras Categorías</h2>
+            <p class="section-subtitle animate-on-scroll">Explora nuestra selección curada para el slow living</p>
+            <div class="categories-grid">
+                <article class="category-card">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=600&fit=crop" alt="Textil para el hogar">
+                    <div class="category-overlay">
+                        <div class="category-content">
+                            <h3>Textil Hogar</h3>
+                            <p>Cojines, plaids y mantas</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="category-card">
+                    <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&h=600&fit=crop" alt="Bolsos y complementos">
+                    <div class="category-overlay">
+                        <div class="category-content">
+                            <h3>Bolsos</h3>
+                            <p>Clutches, totebags y capazos</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="category-card">
+                    <img src="https://images.unsplash.com/photo-1594040226829-7f251ab46d80?w=400&h=600&fit=crop" alt="Aromas de ambiente">
+                    <div class="category-overlay">
+                        <div class="category-content">
+                            <h3>Aromas</h3>
+                            <p>Velas y difusores</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="category-card">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=600&fit=crop" alt="Moda y accesorios">
+                    <div class="category-overlay">
+                        <div class="category-content">
+                            <h3>Moda</h3>
+                            <p>Camisolas, vestidos y más</p>
+                        </div>
                     </div>
                 </article>
             </div>
@@ -1285,16 +1527,16 @@
         <div class="container">
             <div class="about-content">
                 <div class="about-image animate-on-scroll">
-                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500&h=600&fit=crop" alt="Interior de la tienda La Cotonera">
+                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500&h=600&fit=crop" alt="Interior de La Cotonera en Mataró">
                     <div class="about-image-accent"></div>
                 </div>
                 <div class="about-text animate-on-scroll">
-                    <h3>Nuestra Historia</h3>
+                    <h3>Desde Mataró, con tradición textil</h3>
                     <p>
-                        La Cotonera nace del amor por los materiales naturales y el comercio de proximidad. Durante más de 15 años, hemos seleccionado cuidadosamente cada producto, priorizando la calidad artesanal y el respeto por el medio ambiente.
+                        La Cotonera nació del amor por los materiales nobles y el comercio de proximidad. Ubicados en el corazón de Mataró —ciudad con gran tradición textil—, seleccionamos cuidadosamente cada producto priorizando la artesanía y la sostenibilidad.
                     </p>
                     <p>
-                        Cada pieza que encuentras en nuestra tienda ha sido elegida con dedicación, buscando siempre esa conexión especial entre tradición y contemporaneidad que define el estilo de vida mediterráneo.
+                        No vendemos objetos, vendemos historias. Cada cojín, cada bolso, cada vela ha sido elegida para aportar calidez y autenticidad a tu vida. Somos la tienda donde tocar, oler y sentir antes de comprar.
                     </p>
                     <div class="about-features">
                         <div class="about-feature">
@@ -1304,8 +1546,19 @@
                                 </svg>
                             </div>
                             <div>
-                                <h4>Productos 100% Naturales</h4>
-                                <p>Materiales orgánicos y sostenibles</p>
+                                <h4>Fibras 100% Naturales</h4>
+                                <p>Lino, algodón y rafia</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 21v-4m0 0V5a2 2 0 0 1 2-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 0 0-2 2zm9-13.5V9"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Comercio Local</h4>
+                                <p>Apoyamos artesanos cercanos</p>
                             </div>
                         </div>
                         <div class="about-feature">
@@ -1315,20 +1568,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <h4>Artesanía Local</h4>
-                                <p>Apoyamos a productores cercanos</p>
-                            </div>
-                        </div>
-                        <div class="about-feature">
-                            <div class="about-feature-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <path d="M12 6v6l4 2"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4>Envío Rápido</h4>
-                                <p>Entrega en 24-48 horas</p>
+                                <h4>Curación Artesanal</h4>
+                                <p>Productos con alma propia</p>
                             </div>
                         </div>
                         <div class="about-feature">
@@ -1338,7 +1579,7 @@
                                 </svg>
                             </div>
                             <div>
-                                <h4>Atención Personal</h4>
+                                <h4>Atención Cercana</h4>
                                 <p>Te asesoramos con cariño</p>
                             </div>
                         </div>
@@ -1348,27 +1589,65 @@
         </div>
     </section>
 
+    <!-- Values -->
+    <section class="values">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Nuestro Compromiso</h2>
+            <p class="section-subtitle animate-on-scroll">Lo que nos define y nos hace diferentes</p>
+            <div class="values-grid">
+                <article class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                        </svg>
+                    </div>
+                    <h3>Slow Living</h3>
+                    <p>Productos que invitan a pausar, disfrutar del hogar y huir del consumo masivo. Cada pieza merece ser apreciada.</p>
+                </article>
+                <article class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                    </div>
+                    <h3>Identidad Local</h3>
+                    <p>Desde Mataró, ciudad con tradición textil. Somos un referente de calidad y conocimiento del material en el Maresme.</p>
+                </article>
+                <article class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <h3>Calidad Artesanal</h3>
+                    <p>No importa la cantidad, importa la calidad. Seleccionamos piezas únicas que aportan personalidad a tu espacio.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
     <!-- Gallery -->
     <section class="gallery" id="galeria">
         <div class="container">
             <h2 class="section-title animate-on-scroll">Galería de Estilo</h2>
-            <p class="section-subtitle animate-on-scroll">Inspírate con nuestra selección de espacios</p>
+            <p class="section-subtitle animate-on-scroll">Inspírate con nuestra selección de espacios y productos</p>
             <div class="masonry">
                 <div class="masonry-item">
                     <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=500&fit=crop" alt="Salón con textiles naturales">
                     <div class="masonry-overlay">
                         <div>
-                            <h4>Salón Mediterraneo</h4>
-                            <p>Textiles y cojines</p>
+                            <h4>Cojines & Textiles</h4>
+                            <p>Textura y color natural</p>
                         </div>
                     </div>
                 </div>
                 <div class="masonry-item">
-                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=400&h=300&fit=crop" alt="Dormitorio minimalista">
+                    <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&h=300&fit=crop" alt="Colección de bolsos">
                     <div class="masonry-overlay">
                         <div>
-                            <h4>Dormitorio Rústico</h4>
-                            <p>Ropa de cama en lino</p>
+                            <h4>Bolsos Artesanales</h4>
+                            <p>Capazos y totebags</p>
                         </div>
                     </div>
                 </div>
@@ -1376,22 +1655,22 @@
                     <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" alt="Detalle de texturas">
                     <div class="masonry-overlay">
                         <div>
-                            <h4>Texturas Naturales</h4>
-                            <p>Detalles artesanales</p>
+                            <h4>Texturas Nobles</h4>
+                            <p>Lino, rafia y algodón</p>
                         </div>
                     </div>
                 </div>
                 <div class="masonry-item">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=350&fit=crop" alt="Esquina acogedora">
+                    <img src="https://images.unsplash.com/photo-1580502304784-8985b7eb7260?w=400&h=350&fit=crop" alt="Velas aromáticas">
                     <div class="masonry-overlay">
                         <div>
-                            <h4>Esquina Cozy</h4>
-                            <p>Momentos de descanso</p>
+                            <h4>Aromas del Hogar</h4>
+                            <p>Velas y difusores</p>
                         </div>
                     </div>
                 </div>
                 <div class="masonry-item">
-                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=450&fit=crop" alt="Estantería con productos">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=450&fit=crop" alt="Interior de tienda">
                     <div class="masonry-overlay">
                         <div>
                             <h4>Nuestra Tienda</h4>
@@ -1400,11 +1679,11 @@
                     </div>
                 </div>
                 <div class="masonry-item">
-                    <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=400&h=300&fit=crop" alt="Mesa con productos naturales">
+                    <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=400&h=300&fit=crop" alt="Mesa con detalles">
                     <div class="masonry-overlay">
                         <div>
-                            <h4>Mesa Artesanal</h4>
-                            <p>Decoración y detalles</p>
+                            <h4>Detalles con Alma</h4>
+                            <p>Neceseres y accesorios</p>
                         </div>
                     </div>
                 </div>
@@ -1426,11 +1705,28 @@
                         <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                         <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                     </div>
-                    <p class="testimonial-text">"Los cojines de lino son increíbles, súper suaves y el color es exactamente como en la foto. El servicio al cliente muy amable."</p>
+                    <p class="testimonial-text">"Los cojines de lino son increíbles, súper suaves y el color es exactamente como en la foto. Me encanta poder tocar los productos antes de comprar."</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">MC</div>
                         <div class="testimonial-author-info">
                             <h5>María Carmen</h5>
+                            <p>Mataró</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p class="testimonial-text">"Encargué los capazos de rafia para el verano. Son súper resistentes y preciosos. El trato es muy cercano, siempre me siento como en casa."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">LR</div>
+                        <div class="testimonial-author-info">
+                            <h5>Laura Rodríguez</h5>
                             <p>Barcelona</p>
                         </div>
                     </div>
@@ -1443,29 +1739,12 @@
                         <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                         <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                     </div>
-                    <p class="testimonial-text">"Me encanta poder tocar los productos antes de comprarlos. La calidad es excepcional y los precios muy justos."</p>
+                    <p class="testimonial-text">"Desde que descubrí La Cotonera, no compro en otro sitio. Los necessers con estampados son únicos y las velas huelen increíble."</p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar">PP</div>
+                        <div class="testimonial-avatar">AP</div>
                         <div class="testimonial-author-info">
-                            <h5>Pepa Pérez</h5>
-                            <p>Valencia</p>
-                        </div>
-                    </div>
-                </article>
-                <article class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    </div>
-                    <p class="testimonial-text">"Encargué las cestas de mimbre para la nueva casa. Quedan preciosas y son súper resistentes. ¡Recomendado!"</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">LR</div>
-                        <div class="testimonial-author-info">
-                            <h5>Laura Rodríguez</h5>
-                            <p>Madrid</p>
+                            <h5>Ana Puig</h5>
+                            <p>Calella</p>
                         </div>
                     </div>
                 </article>
@@ -1473,15 +1752,29 @@
         </div>
     </section>
 
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content animate-on-scroll">
+                <h3>Únete a nuestra comunidad</h3>
+                <p>Recibe novedades, descuentos exclusivos y consejos de decoración.</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Tu email" required>
+                    <button type="submit" class="btn btn-primary">Suscribirme</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact -->
     <section class="contact" id="contacto">
         <div class="container">
-            <h2 class="section-title animate-on-scroll">Contáctanos</h2>
-            <p class="section-subtitle animate-on-scroll">¿Tienes alguna pregunta? Estamos aquí para ayudarte</p>
+            <h2 class="section-title animate-on-scroll">Ven a visitarnos</h2>
+            <p class="section-subtitle animate-on-scroll">Te esperamos en nuestra tienda de Mataró</p>
             <div class="contact-wrapper">
                 <div class="contact-info animate-on-scroll">
-                    <h3>¿Dónde encontrarnos?</h3>
-                    <p>Visítanos en nuestra tienda física o escríbenos. Te esperamos con los brazos abiertos y un café recién hecho.</p>
+                    <h3>¿Dónde estamos?</h3>
+                    <p>Passa per la nostra botiga i descobreix tot el que hem seleccionat per a tu. T'assessorem amb molt de carinyo!</p>
                     <div class="contact-details">
                         <div class="contact-item">
                             <div class="contact-icon">
@@ -1492,7 +1785,7 @@
                             </div>
                             <div>
                                 <h4>Dirección</h4>
-                                <p>Calle Mayor 42, 03002 Alicante</p>
+                                <p>Carrer de la Riera, XX, 08302 Mataró</p>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -1503,7 +1796,7 @@
                             </div>
                             <div>
                                 <h4>Teléfono</h4>
-                                <p>+34 965 123 456</p>
+                                <p>+34 937 555 123</p>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -1515,7 +1808,7 @@
                             </div>
                             <div>
                                 <h4>Email</h4>
-                                <p>hola@lacotonera.es</p>
+                                <p>hola@lacotonera.cat</p>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -1527,7 +1820,7 @@
                             </div>
                             <div>
                                 <h4>Horario</h4>
-                                <p>Lun - Sáb: 10:00 - 20:00</p>
+                                <p>Lun - Sáb: 10:00 - 20:00 | Dom: 10:00 - 14:00</p>
                             </div>
                         </div>
                     </div>
@@ -1576,7 +1869,7 @@
                         </svg>
                         La Cotonera
                     </a>
-                    <p>Productos artesanales que aportan calidez y autenticidad a tu hogar. Slow living hecho realidad.</p>
+                    <p>Concept store de hogar y complementos en Mataró. Textiles con alma para el slow living.</p>
                     <div class="social-links">
                         <a href="#" class="social-link" aria-label="Instagram">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1601,10 +1894,10 @@
                 <div class="footer-links">
                     <h4>Tienda</h4>
                     <ul>
-                        <li><a href="#">Textiles</a></li>
-                        <li><a href="#">Decoración</a></li>
-                        <li><a href="#">Almacenaje</a></li>
-                        <li><a href="#">Accesorios</a></li>
+                        <li><a href="#">Textil Hogar</a></li>
+                        <li><a href="#">Bolsos y Complementos</a></li>
+                        <li><a href="#">Aromas</a></li>
+                        <li><a href="#">Moda</a></li>
                         <li><a href="#">Novedades</a></li>
                     </ul>
                 </div>
@@ -1613,8 +1906,8 @@
                     <ul>
                         <li><a href="#">Sobre Nosotros</a></li>
                         <li><a href="#">Envíos y Devoluciones</a></li>
-                        <li><a href="#">Guía de Tallas</a></li>
                         <li><a href="#">Cuidado de Productos</a></li>
+                        <li><a href="#">Guía de Tallas</a></li>
                         <li><a href="#">FAQ</a></li>
                     </ul>
                 </div>
@@ -1629,7 +1922,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2025 La Cotonera. Todos los derechos reservados. Hecho con ❤️ en Alicante.</p>
+                <p>© 2025 La Cotonera · Mataró · Todos los derechos reservados · Hecho con ❤️ en el Maresme</p>
             </div>
         </div>
     </footer>
@@ -1684,7 +1977,6 @@
         const animateOnScroll = (entries, observer) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    // Add staggered delay for items in groups
                     const delay = entry.target.dataset.delay || 0;
                     setTimeout(() => {
                         entry.target.classList.add('visible');
@@ -1696,9 +1988,8 @@
 
         const observer = new IntersectionObserver(animateOnScroll, observerOptions);
 
-        // Observe all elements with animation classes
-        document.querySelectorAll('.animate-on-scroll, .product-card, .masonry-item').forEach((el, index) => {
-            el.dataset.delay = index % 4; // Stagger effect
+        document.querySelectorAll('.animate-on-scroll, .product-card, .masonry-item, .category-card').forEach((el, index) => {
+            el.dataset.delay = index % 4;
             observer.observe(el);
         });
 
@@ -1740,101 +2031,57 @@
 
         // ===== FORM HANDLING =====
         const contactForm = document.getElementById('contactForm');
+        const newsletterForm = document.getElementById('newsletterForm');
 
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // Simulate form submission
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            
-            submitBtn.innerHTML = `
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation: spin 1s linear infinite;">
-                    <circle cx="12" cy="12" r="10" stroke-dasharray="60" stroke-dashoffset="20"/>
-                </svg>
-                Enviando...
-            `;
-            submitBtn.disabled = true;
-
-            // Simulate API call
-            setTimeout(() => {
-                submitBtn.innerHTML = `
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="20 6 9 17 4 12"/>
+        const handleFormSubmit = (form, button, originalText) => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                button.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation: spin 1s linear infinite;">
+                        <circle cx="12" cy="12" r="10" stroke-dasharray="60" stroke-dashoffset="20"/>
                     </svg>
-                    ¡Mensaje enviado!
+                    Enviando...
                 `;
-                submitBtn.style.background = 'var(--color-accent)';
+                button.disabled = true;
 
-                // Reset form after delay
                 setTimeout(() => {
-                    contactForm.reset();
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.style.background = '';
-                    submitBtn.disabled = false;
-                }, 2000);
-            }, 1500);
-        });
+                    button.innerHTML = `
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        ¡Hecho!
+                    `;
+                    button.style.background = 'var(--color-accent)';
 
-        // Add spin animation for loading state
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes spin {
-                from { transform: rotate(0deg); }
-                to { transform: rotate(360deg); }
-            }
-        `;
-        document.head.appendChild(style);
+                    setTimeout(() => {
+                        form.reset();
+                        button.innerHTML = originalText;
+                        button.style.background = '';
+                        button.disabled = false;
+                    }, 2000);
+                }, 1500);
+            });
+        };
+
+        if (contactForm) {
+            handleFormSubmit(contactForm, contactForm.querySelector('button[type="submit"]'), contactForm.querySelector('button[type="submit"]').innerHTML);
+        }
+
+        if (newsletterForm) {
+            handleFormSubmit(newsletterForm, newsletterForm.querySelector('button[type="submit"]'), newsletterForm.querySelector('button[type="submit"]').innerHTML);
+        }
 
         // ===== PARALLAX EFFECT ON HERO =====
-        const hero = document.querySelector('.hero');
         const heroImage = document.querySelector('.hero-image');
 
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
-            const heroHeight = hero.offsetHeight;
+            const heroHeight = document.querySelector('.hero').offsetHeight;
             
             if (scrolled < heroHeight) {
                 heroImage.style.transform = `translateY(${scrolled * 0.1}px)`;
             }
-        });
-
-        // ===== IMAGE LAZY LOADING =====
-        const images = document.querySelectorAll('img[data-src]');
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                    observer.unobserve(img);
-                }
-            });
-        });
-
-        // ===== PRODUCT CARD HOVER EFFECTS =====
-        const productCards = document.querySelectorAll('.product-card');
-        
-        productCards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-            });
-        });
-
-        // ===== NEWSLETTER / CONTACT FOCUS EFFECTS =====
-        const formInputs = document.querySelectorAll('.form-group input, .form-group textarea');
-        
-        formInputs.forEach(input => {
-            input.addEventListener('focus', () => {
-                input.parentElement.classList.add('focused');
-            });
-            
-            input.addEventListener('blur', () => {
-                input.parentElement.classList.remove('focused');
-            });
         });
 
         // ===== COUNTER ANIMATION FOR STATS =====
@@ -1874,7 +2121,6 @@
 
         // ===== KEYBOARD NAVIGATION =====
         document.addEventListener('keydown', (e) => {
-            // ESC to close mobile menu
             if (e.key === 'Escape' && navLinks.classList.contains('active')) {
                 menuToggle.classList.remove('active');
                 navLinks.classList.remove('active');
@@ -1883,13 +2129,13 @@
 
         // ===== PREFERS REDUCED MOTION =====
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            document.querySelectorAll('.animate-on-scroll, .product-card, .masonry-item').forEach(el => {
+            document.querySelectorAll('.animate-on-scroll, .product-card, .masonry-item, .category-card').forEach(el => {
                 el.style.transition = 'none';
                 el.classList.add('visible');
             });
         }
 
-        console.log('🌿 La Cotonera - Landing page cargada correctamente');
+        console.log('🌿 La Cotonera - Concept Store Mataró');
     </script>
 </body>
 </html>
